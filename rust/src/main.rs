@@ -60,7 +60,9 @@ impl Aes128 {
         let mut round_keys = [[[0u8; 4]; 4]; 11];
         for r in 0..11 {
             for c in 0..4 {
-                round_keys[r][c] = w[r * 4 + c];
+                for row in 0..4 {
+                    round_keys[r][row][c] = w[r * 4 + c][row];
+                }
             }
         }
         round_keys
